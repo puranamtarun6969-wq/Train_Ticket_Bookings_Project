@@ -1,324 +1,320 @@
 # Train Ticket Booking System
 
-## Introduction
+## Project Overview
 
-The Train Ticket Booking System is a console-based application developed using the C programming language. This project simulates a railway reservation system where users can search for trains, book tickets, view booking details, cancel tickets, and manage passenger information. The project is designed to demonstrate the practical implementation of core C programming concepts such as structures, file handling, functions, arrays, pointers, and data management.
+The Train Ticket Booking System is a console-based application developed in C language. The project simulates the basic functionalities of a railway reservation system, allowing users to create accounts, log in, book train tickets, view booking details, and cancel reservations. An administrator can manage train information through a separate admin interface.
 
----
-
-## Objectives
-
-- Automate the train ticket reservation process.
-- Maintain train and passenger records efficiently.
-- Reduce manual effort in ticket booking and cancellation.
-- Provide a simple and user-friendly interface.
-- Demonstrate real-world application development using C language.
+The project uses file handling for permanent data storage and modular programming concepts by separating functionalities into multiple source files.
 
 ---
 
 ## Features
 
-### User Management
-- User Registration
-- User Login Authentication
-- Password Validation
+### User Features
 
-### Train Management
-- View Available Trains
-- Search Train by Number
-- Search Train by Source and Destination
-- Display Train Details
+* User Registration
+* User Login Authentication
+* View Available Trains
+* Check Seat Availability
+* Reserve Tickets
+* View Booking Details
+* Cancel Booked Tickets
+* Logout
 
-### Ticket Booking
-- Book Train Tickets
-- Enter Passenger Details
-- Automatic Seat Allocation
-- Fare Calculation
-- Ticket Generation
+### Admin Features
 
-### Ticket Cancellation
-- Cancel Existing Tickets
-- Update Available Seats
-- Record Cancellation Details
-
-### Ticket Information
-- View Booked Tickets
-- Display Passenger Information
-- Show Journey Details
-- Display Fare Information
-
-### Data Storage
-- File-Based Data Storage
-- Permanent Record Maintenance
-- Read and Write Operations using File Handling
+* Admin Login
+* Add New Trains
+* Display Train Information
+* Monitor Reservations
+* Logout
 
 ---
 
 ## Technologies Used
 
-| Technology | Purpose |
-|------------|----------|
-| C Language | Application Development |
-| GCC Compiler | Code Compilation |
-| Linux/Ubuntu | Execution Environment |
-| File Handling | Data Storage |
-| Structures | Data Management |
+* Programming Language: C
+* Operating System: Linux
+* Compiler: GCC
+* Build Automation: Makefile
+* Data Storage: Text Files
+* Concepts Used:
 
----
-
-## Concepts Used
-
-The project implements the following C programming concepts:
-
-- Structures
-- Arrays
-- Functions
-- Pointers
-- File Handling
-- String Manipulation
-- Conditional Statements
-- Loops
-- Modular Programming
-
----
-
-## System Requirements
-
-### Hardware Requirements
-
-- Processor: Intel i3 or above
-- RAM: 4 GB or above
-- Storage: 100 MB free space
-
-### Software Requirements
-
-- Operating System: Linux / Ubuntu
-- GCC Compiler
-- Terminal
+  * Structures
+  * Linked Lists
+  * File Handling
+  * Dynamic Memory Allocation
+  * Functions
+  * Modular Programming
+  * Date Validation
+  * User Authentication
 
 ---
 
 ## Project Structure
 
 ```text
-Train_Ticket_Booking/
+c_mini_project/
 │
-├── train_ticket_booking.c
-├── train_data.txt
-├── passenger_data.txt
-├── booking_data.txt
-├── user_data.txt
-└── README.md
+├── main.c
+├── headers.h
+├── makefile
+│
+├── signup.c
+├── signin.c
+├── valid_password.c
+│
+├── admin_menu.c
+├── user_menu.c
+│
+├── add_train.c
+├── display_trains.c
+├── train_exists.c
+│
+├── reserve_ticket.c
+├── booking_details.c
+├── cancel_ticket.c
+│
+├── available_seats.c
+├── booked_count.c
+├── next_free_seat.c
+├── display_trains_with_availability.c
+├── validity.c
+├── file_init.c
+│
+├── users.txt
+├── trains.txt
+├── booking.txt
+└── user.txt
 ```
 
 ---
 
-## Functional Modules
+## Modules Description
 
-### 1. User Module
+### User Registration
 
-This module manages user authentication.
+Allows new users to create an account by entering:
 
-Functions:
-- Register New User
-- Login Existing User
-- Validate Credentials
+* Username
+* Password
 
----
-
-### 2. Train Module
-
-This module manages train information.
-
-Functions:
-- Add Train Details
-- Search Train
-- Display Available Trains
-- Update Train Records
+The credentials are stored in `users.txt`.
 
 ---
 
-### 3. Booking Module
+### User Login
 
-This module handles ticket reservations.
-
-Functions:
-- Enter Passenger Information
-- Check Seat Availability
-- Allocate Seats
-- Generate Ticket
+Authenticates users using the credentials stored in `users.txt`.
 
 ---
 
-### 4. Cancellation Module
+### Train Management
 
-This module manages ticket cancellation.
+Admin can:
 
-Functions:
-- Search Existing Booking
-- Cancel Ticket
-- Update Seat Count
+* Add train details
+* View all train details
 
----
-
-### 5. File Management Module
-
-This module stores and retrieves data.
-
-Functions:
-- Save Train Records
-- Save Passenger Records
-- Save Booking Records
-- Read Stored Data
+Train information is stored in `trains.txt`.
 
 ---
 
-## Working Procedure
+### Ticket Reservation
 
-### Step 1: User Login
+Users can:
 
-The user enters login credentials to access the system.
+* Select journey date
+* View available trains
+* Check seat availability
+* Enter passenger details
+* Book tickets
 
-### Step 2: Train Search
-
-The user searches for available trains using:
-- Train Number
-- Source Station
-- Destination Station
-
-### Step 3: Ticket Booking
-
-The user enters:
-- Passenger Name
-- Age
-- Gender
-- Journey Details
-
-The system checks seat availability and confirms booking.
-
-### Step 4: Ticket Generation
-
-The system generates:
-- Ticket Number
-- Passenger Details
-- Train Information
-- Fare Details
-
-### Step 5: Ticket Cancellation
-
-The user enters the ticket number to cancel the booking.
-
-The system:
-- Removes booking record
-- Updates seat availability
+Passenger details are stored in `booking.txt`.
 
 ---
 
-## Data Flow
+### Booking Details
+
+Users can view:
+
+* Train Number
+* Journey Date
+* Seat Number
+* Passenger Details
+
+---
+
+### Ticket Cancellation
+
+Users can:
+
+* Cancel previously booked tickets
+* Remove reservation records from booking file
+
+---
+
+### Seat Allocation
+
+The system automatically:
+
+* Checks occupied seats
+* Finds the next available seat
+* Assigns seat numbers sequentially
+
+---
+
+### Date Validation
+
+Booking is restricted to:
+
+* Current Date
+* Next 2 Days
+
+Validation is performed using C Time Library functions.
+
+---
+
+## File Storage
+
+### users.txt
+
+Stores user credentials.
+
+Example:
 
 ```text
-User
-  |
-  V
-Login
-  |
-  V
-Search Train
-  |
-  V
-Book Ticket
-  |
-  V
-Seat Availability Check
-  |
-  V
-Ticket Generation
-  |
-  V
-Store Data in Files
+tarun pass123
+sohel abc123
 ```
 
----
+### trains.txt
 
-## Compilation and Execution
+Stores train information.
 
-### Compile
-
-```bash
-gcc train_ticket_booking.c -o train
-```
-
-### Run
-
-```bash
-./train
-```
-
----
-
-## Sample Menu
+Example:
 
 ```text
-=================================
- TRAIN TICKET BOOKING SYSTEM
-=================================
-
-1. Register User
-2. Login
-3. View Trains
-4. Search Train
-5. Book Ticket
-6. View Ticket
-7. Cancel Ticket
-8. Exit
-
-Enter Your Choice:
+101 Hyderabad Vijayawada
+102 Vijayawada Visakhapatnam
 ```
+
+### booking.txt
+
+Stores passenger reservation details.
+
+Example:
+
+```text
+tarun 101 2026-06-25 1 Ram 22 Male
+```
+
+---
+
+## Compilation
+
+Using GCC:
+
+```bash
+gcc *.c -o project
+```
+
+---
+
+## Using Makefile
+
+Compile:
+
+```bash
+make
+```
+
+Run:
+
+```bash
+./project
+```
+
+Clean Executable:
+
+```bash
+make clean
+```
+
+---
+
+## Program Flow
+
+### Main Menu
+
+```text
+1. Sign Up
+2. Sign In
+3. Exit
+```
+
+### User Menu
+
+```text
+1. Display Trains
+2. Reserve Ticket
+3. Booking Details
+4. Cancel Ticket
+5. Logout
+```
+
+### Admin Menu
+
+```text
+1. Add Train
+2. Display Trains
+3. Logout
+```
+
+---
+
+## Concepts Demonstrated
+
+* Modular Programming
+* Structures
+* Linked Lists
+* Dynamic Memory Allocation
+* File Handling
+* String Handling
+* Authentication System
+* Data Validation
+* Build Automation using Makefile
 
 ---
 
 ## Advantages
 
-- Easy to Use
-- Fast Reservation Process
-- Reduced Manual Work
-- Efficient Data Management
-- Permanent Data Storage
-- Simple User Interface
-
----
-
-## Limitations
-
-- Console-Based Interface
-- No Online Payment Support
-- Single User Environment
-- Basic Security Features
+* Simple User Interface
+* Easy To Use
+* Persistent Data Storage
+* Modular Design
+* Automatic Seat Allocation
+* Efficient Ticket Management
 
 ---
 
 ## Future Enhancements
 
-- Graphical User Interface (GUI)
-- Online Payment Gateway
-- PNR Status Tracking
-- Multiple User Support
-- Train Schedule Management
-- Admin Dashboard
-- Database Integration (MySQL)
-- SMS/Email Notifications
+* Multiple Coach Support
+* Waiting List Management
+* PNR Generation
+* Fare Calculation
+* Train Search by Source and Destination
+* Admin Dashboard
+* Database Integration
+* Online Reservation System
 
 ---
 
-## Applications
+## Author
 
-- Railway Reservation Systems
-- Transportation Management
-- Ticket Reservation Platforms
-- Educational Projects for C Programming
+**Puranam Tarun**
 
----
+B.Tech (EEE)
 
-## Conclusion
-
-The Train Ticket Booking System is a simple and efficient railway reservation application developed using C language. It demonstrates the implementation of important programming concepts such as structures, file handling, and modular programming while providing a practical solution for train ticket booking and management.
+Train Ticket Booking System using C Language, File Handling, Linked Lists, and Makefile.
